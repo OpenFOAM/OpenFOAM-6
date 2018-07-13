@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Version:  6
+    \\  /    A nd           | Version:  dev
      \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 
@@ -12,6 +12,5 @@ zDir                 (0 0 1);
 flowDir              (1 0 0);
 z0                   uniform 0.1;
 zGround              uniform 935.0;
-value                $internalField;
 
 // ************************************************************************* //
