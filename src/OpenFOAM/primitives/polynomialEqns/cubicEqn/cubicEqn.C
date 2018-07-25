@@ -96,7 +96,7 @@ Foam::Roots<3> Foam::cubicEqn::roots() const
 
     if (oneReal)
     {
-        const Roots<1> r = linearEqn(- a, b/3).roots();
+        const Roots<1> r = linearEqn(a, b/3).roots();
         return Roots<3>(r.type(0), r[0]);
     }
     else if (twoReal)
