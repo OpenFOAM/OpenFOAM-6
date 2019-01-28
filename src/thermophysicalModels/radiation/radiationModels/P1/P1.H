@@ -1,8 +1,8 @@
 /*---------------------------------------------------------------------------*\
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
-   \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Copyright (C) 2011-2018 OpenFOAM Foundation
+   \\    /   O peration     |
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -38,8 +38,8 @@ SourceFiles
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef radiation_P1_H
-#define radiation_P1_H
+#ifndef radiationModelP1_H
+#define radiationModelP1_H
 
 #include "radiationModel.H"
 #include "volFields.H"
@@ -65,7 +65,7 @@ class P1
         volScalarField G_;
 
         //- Total radiative heat flux [W/m2]
-        volScalarField qr_;
+        volScalarField Qr_;
 
         //- Absorption coefficient
         volScalarField a_;
@@ -122,7 +122,7 @@ public:
             virtual tmp<volScalarField> Rp() const;
 
             //- Source term component (constant)
-            virtual tmp<volScalarField::Internal> Ru() const;
+            virtual tmp<DimensionedField<scalar, volMesh>> Ru() const;
 };
 
 
