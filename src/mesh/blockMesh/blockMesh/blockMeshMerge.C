@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Copyright (C) 2011-2018 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2011-2019 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -114,7 +114,7 @@ void Foam::blockMesh::calcMergeInfo()
         // the size of the block.
 
         boundBox bb(blockCells[blockPlabel].points(blockFaces, blockPoints));
-        const scalar mergeSqrDist = magSqr(10*small*bb.span());
+        const scalar mergeSqrDist = magSqr(20*small*bb.span());
 
         // This is an N^2 algorithm
 
