@@ -111,7 +111,7 @@ void Foam::StandardChemistryModel<ReactionThermo, ThermoType>::omega
 {
 
     dcdt = Zero;
-
+    
     forAll(reactions_, i)
     {
         const Reaction<ThermoType>& R = reactions_[i];
@@ -186,7 +186,7 @@ void Foam::StandardChemistryModel<ReactionThermo, ThermoType>::derivatives
     dT /= rho*cp;
 
     dcdt[nSpecie_] = -dT;
-
+    
     // dp/dt = ...
     dcdt[nSpecie_ + 1] = 0;
 }

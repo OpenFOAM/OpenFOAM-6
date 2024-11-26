@@ -42,6 +42,7 @@ SourceFiles
 #include "labelList.H"
 #include "speciesTable.H"
 #include "atomicWeights.H"
+#include "cantera/IdealGasMix.h"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -57,6 +58,8 @@ class foamChemistryReader
 :
     public chemistryReader<ThermoType>
 {
+        Cantera::IdealGasMix gas_;
+        
         //- Chemistry/reactions dictionary
         dictionary chemDict_;
 
@@ -129,6 +132,11 @@ public:
 
     // Member functions
 
+        Cantera::IdealGasMix& canteraGas()
+        {
+            return gas_;
+        }
+        
         //- List of elements
         const wordList& elementNames() const
         {

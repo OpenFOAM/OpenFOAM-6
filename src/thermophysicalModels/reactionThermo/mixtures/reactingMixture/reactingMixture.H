@@ -38,6 +38,11 @@ SourceFiles
 #include "speciesTable.H"
 #include "chemistryReader.H"
 #include "multiComponentMixture.H"
+#include "fvc.H"
+#include "cantera/transport.h"
+#include "cantera/transport/MultiTransport.h"
+#include "cantera/transport/MixTransport.h"
+
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -57,9 +62,31 @@ class reactingMixture
     public PtrList<Reaction<ThermoType>>
 {
     // Private member data
+    
+        //- cantera object
+        mutable Cantera::IdealGasMix gas_;
+        Cantera::Transport* tran_;
+        Cantera::MixTransport* tranMix_;
+        Cantera::MultiTransport* tranMulti_;        
 
+        //- number of species
+        int nsp_;
+        
+        //- if mixtureAveraged transport model used
+        bool mixtureAveraged_ = false;
+
+        //- if multiComponent transport model used        
+        bool multiComponent_ = false;
+        
+        //- if mixtureAveraged transport model used
+        bool constantLewis_ = false;
+
+        //- if multiComponent transport model used        
+        bool unityLewis_ = false;        
+        
         //- Table of species composition
         speciesCompositionTable speciesComposition_;
+        
 
 
     // Private Member Functions
@@ -119,6 +146,71 @@ public:
         {
             return speciesComposition_;
         }
+        
+        //- species mass diffusivity
+        inline PtrList<volScalarField> D
+        (
+            const volScalarField& p, 
+            const volScalarField& T, 
+            const PtrList<volScalarField>& Y,
+            const volScalarField& rho        
+        ) const;
+        
+        inline PtrList<volScalarField> Dmass
+        (
+            const volScalarField& p, 
+            const volScalarField& T, 
+            const PtrList<volScalarField>& Y
+        ) const;        
+        
+        //- species thermal diffusivity
+        inline PtrList<volScalarField> DT
+        (
+            const volScalarField& p, 
+            const volScalarField& T, 
+            const PtrList<volScalarField>& Y
+        ) const;
+        
+        inline PtrList<volVectorField> Dm
+        (
+            const volScalarField& p, 
+            const volScalarField& T, 
+            const PtrList<volScalarField>& Y,
+            const volScalarField& rho    
+        ) const;
+        
+/*        //- mixture viscosity
+        inline scalar mixVisc
+        (
+            const scalar p,
+            const scalar T,
+            const scalarField& Y
+        ) const;
+
+        //- mixture thermal conductivity
+        inline scalar mixThermalCond
+        (
+            const scalar p,
+            const scalar T,
+            const scalarField& Y
+        ) const;
+*/
+
+        //- binary diffusivity coefficients
+        inline PtrList<volScalarField> bD
+        (
+            const volScalarField& p, 
+            const volScalarField& T, 
+            const PtrList<volScalarField>& Y
+        ) const;    
+
+        //- species fluxes
+        inline PtrList<volVectorField> speFlux
+        (
+            const volScalarField& p,
+            const volScalarField& T,
+            const PtrList<volScalarField>& c
+        ) const;            
 };
 
 
@@ -127,6 +219,8 @@ public:
 } // End namespace Foam
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#include "reactingMixtureI.H"
 
 #ifdef NoRepository
     #include "reactingMixture.C"

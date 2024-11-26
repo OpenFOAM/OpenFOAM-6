@@ -84,3 +84,23 @@ doc/Doxygen/DTAGS
 
 # Ignore the test directory
 /tutorialsTest
+
+#Ignore all tutorial files that are not configs, resources or scripts
+/tutorials
+
+!Allwmake
+!Alltest
+!Allclean
+!Allrun
+!*.yaml
+!*.cti
+!*Properties
+
+!/tutorials/resources/
+
+!/tutorials/**/system/
+!/tutorials/**/0/
+
+!/tutorials/**/constant/*reaction*
+!/tutorials/**/constant/*thermo*
+

@@ -23,7 +23,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "hePsiThermo.H"
+#include "hePsiThermo.H" 
 
 // * * * * * * * * * * * * * Private Member Functions  * * * * * * * * * * * //
 
@@ -49,7 +49,6 @@ void Foam::hePsiThermo<BasicPsiThermo, MixtureType>::calculate()
             pCells[celli],
             TCells[celli]
         );
-
         psiCells[celli] = mixture_.psi(pCells[celli], TCells[celli]);
 
         muCells[celli] = mixture_.mu(pCells[celli], TCells[celli]);

@@ -37,6 +37,7 @@ Description
 #include "StandardChemistryModel.H"
 #include "TDACChemistryModel.H"
 #include "thermoPhysicsTypes.H"
+#include "canteraChemistryModel.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -274,6 +275,121 @@ namespace Foam
         constHThermoPhysics
     );
 
+    
+    // cantera chemistry model
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        psiReactionThermo,
+        constGasHThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        psiReactionThermo,
+        gasHThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        psiReactionThermo,
+        constIncompressibleGasHThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        psiReactionThermo,
+        incompressibleGasHThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        psiReactionThermo,
+        icoPoly8HThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        psiReactionThermo,
+        constFluidHThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        psiReactionThermo,
+        constAdiabaticFluidHThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        psiReactionThermo,
+        constHThermoPhysics
+    );
+
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        rhoReactionThermo,
+        constGasHThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        rhoReactionThermo,
+        gasHThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        rhoReactionThermo,
+        constIncompressibleGasHThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        rhoReactionThermo,
+        incompressibleGasHThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        rhoReactionThermo,
+        icoPoly8HThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        rhoReactionThermo,
+        constFluidHThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        rhoReactionThermo,
+        constAdiabaticFluidHThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        rhoReactionThermo,
+        constHThermoPhysics
+    );    
+
 
     // Chemistry moldels based on sensibleInternalEnergy
     makeChemistryModelType
@@ -500,6 +616,121 @@ namespace Foam
     makeChemistryModelType
     (
         TDACChemistryModel,
+        rhoReactionThermo,
+        constEThermoPhysics
+    );
+
+    
+    // cantera chemistry model
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        psiReactionThermo,
+        constGasEThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        psiReactionThermo,
+        gasEThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        psiReactionThermo,
+        constIncompressibleGasEThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        psiReactionThermo,
+        incompressibleGasEThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        psiReactionThermo,
+        icoPoly8EThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        psiReactionThermo,
+        constFluidEThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        psiReactionThermo,
+        constAdiabaticFluidEThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        psiReactionThermo,
+        constEThermoPhysics
+    );
+
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        rhoReactionThermo,
+        constGasEThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        rhoReactionThermo,
+        gasEThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        rhoReactionThermo,
+        constIncompressibleGasEThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        rhoReactionThermo,
+        incompressibleGasEThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        rhoReactionThermo,
+        icoPoly8EThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        rhoReactionThermo,
+        constFluidEThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
+        rhoReactionThermo,
+        constAdiabaticFluidEThermoPhysics
+    );
+
+    makeChemistryModelType
+    (
+        canteraChemistryModel,
         rhoReactionThermo,
         constEThermoPhysics
     );

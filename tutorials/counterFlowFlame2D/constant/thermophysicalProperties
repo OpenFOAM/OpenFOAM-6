@@ -1,0 +1,41 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      thermophysicalProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+thermoType
+{
+    type            canteraPsiThermo;
+    mixture         reactingMixture;
+    transport       sutherland;
+    thermo          janaf;
+    energy          sensibleEnthalpy;
+    equationOfState perfectGas;
+    specie          specie;
+}
+
+inertSpecie N2;
+
+//chemistryReader foamChemistryReader;
+//foamChemistryFile "$FOAM_CASE/constant/reactionsGRI";
+//foamChemistryThermoFile "$FOAM_CASE/constant/thermo.compressibleGasGRI";
+chemistryReader canteraChemistryReader;
+canteraChemistryFile "gri30.cti";
+canteraFileID "gri30";
+canteraTransportFile "$FOAM_CASE/constant/transportProperties";
+transportModel "mixtureAveraged";
+
+
+// ************************************************************************* //

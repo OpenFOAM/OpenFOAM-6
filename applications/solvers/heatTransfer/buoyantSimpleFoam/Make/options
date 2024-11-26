@@ -9,6 +9,8 @@ EXE_INC = \
     -I$(LIB_SRC)/TurbulenceModels/compressible/lnInclude
 
 EXE_LIBS = \
+    -L$(CANTERA_LIB_PATH) \
+    -lcantera_shared \
     -lfiniteVolume \
     -lfvOptions \
     -lsampling \

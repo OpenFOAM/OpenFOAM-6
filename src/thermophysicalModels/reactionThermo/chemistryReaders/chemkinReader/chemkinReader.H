@@ -47,8 +47,8 @@ SourceFiles
 #include "speciesTable.H"
 #include "atomicWeights.H"
 #include "reactionTypes.H"
-
 #include <FlexLexer.h>
+#include "cantera/IdealGasMix.h"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -80,6 +80,7 @@ public:
 private:
 
     // Private data
+        Cantera::IdealGasMix gas_;
 
         static int yyBufSize;
         label lineNo_;
@@ -316,7 +317,11 @@ public:
 
 
     // Member functions
-
+            Cantera::IdealGasMix& canteraGas()
+            {
+                return gas_;
+            }
+        
         //- List of elements
         const wordList& elementNames() const
         {

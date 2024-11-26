@@ -33,7 +33,7 @@ Foam::reactingMixture<ThermoType>::reactingMixture
 (
     const dictionary& thermoDict,
     const fvMesh& mesh,
-    const word& phaseName
+    const word& phaseName 
 )
 :
     speciesTable(),
@@ -47,18 +47,65 @@ Foam::reactingMixture<ThermoType>::reactingMixture
         *this,
         autoPtr<chemistryReader<ThermoType>>::operator()().speciesThermo(),
         mesh,
-        phaseName
+        phaseName,
+        autoPtr<chemistryReader<ThermoType>>::operator()().canteraGas()
     ),
     PtrList<Reaction<ThermoType>>
     (
         autoPtr<chemistryReader<ThermoType>>::operator()().reactions()
     ),
+    gas_(autoPtr<chemistryReader<ThermoType>>::operator()().canteraGas()),    
     speciesComposition_
     (
         autoPtr<chemistryReader<ThermoType>>::operator()().specieComposition()
     )
+    
 {
     autoPtr<chemistryReader<ThermoType>>::clear();
+    nsp_ = speciesComposition_.size();
+    
+/*    if (thermoDict.found("transportModel"))
+    {
+        const word transportModel(thermoDict.lookup("transportModel"));
+        int log = 0;    
+        if (transportModel == "mixtureAveraged") 
+        {
+            mixtureAveraged_ = true;
+            tran_ = Cantera::newTransportMgr("Mix", &gas_, log=0);
+        }
+        if (transportModel == "multiComponent") 
+        {
+            multiComponent_ = true;
+            tran_ = Cantera::newTransportMgr("Multi", &gas_, log=0);
+        }
+        
+        tranMix_ = dynamic_cast<Cantera::MixTransport*>(tran_);
+        tranMulti_ = dynamic_cast<Cantera::MultiTransport*>(tran_);
+    }    
+*/    
+       mixtureAveraged_ = this->MmixtureAveraged_;
+    multiComponent_ = this->MmultiComponent_;
+    constantLewis_ = this->MconstantLewis_;
+        unityLewis_ = this->MunityLewis_;
+    if (mixtureAveraged_ || multiComponent_)
+    {
+        int log = 0;
+        if (mixtureAveraged_) 
+        {
+            tran_ = Cantera::newTransportMgr("Mix", &gas_, log=0);
+        }
+        if (multiComponent_) 
+        {
+            tran_ = Cantera::newTransportMgr("Multi", &gas_, log=0);
+        }    
+        if (constantLewis_) 
+        {
+            tran_ = Cantera::newTransportMgr("Mix", &gas_, log=0);
+        }        
+        tranMix_ = dynamic_cast<Cantera::MixTransport*>(tran_);
+        tranMulti_ = dynamic_cast<Cantera::MultiTransport*>(tran_);
+    }
+    Info << "Dezhi in reactingMixture: " << gas_.nSpecies() << endl; 
 }
 
 

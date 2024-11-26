@@ -32,7 +32,7 @@
 #------------------------------------------------------------------------------
 
 export WM_PROJECT=OpenFOAM
-export WM_PROJECT_VERSION=6
+export WM_PROJECT_VERSION=EclipseRE
 
 ################################################################################
 # USER EDITABLE PART: Changes made here may be lost with the next upgrade
@@ -212,5 +212,60 @@ unset cleaned foamClean foamOldDirs
 # Source the bash completion file:
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [ "$BASH" ] && . $WM_PROJECT_DIR/etc/config.sh/bash_completion
+
+# Variables for Cantera. Requires installed Cantera version not higher than 2.5
+INSTALL_DIRECTORY="$WM_PROJECT_INST_DIR/canteraInstall"
+CANTERA_LIB_PATH="$INSTALL_DIRECTORY/lib"
+CANTERA_ENV_HOME="$HOME/anaconda3/envs/cantera-build"
+export CANTERA_LIB_PATH
+
+if [ -z $LD_LIBRARY_PATH ]; then
+    LD_LIBRARY_PATH=$INSTALL_DIRECTORY/lib
+else
+    LD_LIBRARY_PATH=$INSTALL_DIRECTORY/lib:$LD_LIBRARY_PATH
+fi
+export LD_LIBRARY_PATH
+
+if [ -z $PKG_CONFIG_PATH ]; then
+    PKG_CONFIG_PATH=$INSTALL_DIRECTORY/lib/pkgconfig
+else
+    PKG_CONFIG_PATH=$INSTALL_DIRECTORY/lib/pkgconfig:$PKG_CONFIG_PATH
+fi
+export PKG_CONFIG_PATH
+
+PYTHON_CMD=$CANTERA_ENV_HOME/bin/python
+export PYTHON_CMD
+
+PATH=$INSTALL_DIRECTORY/bin:$PATH
+export PATH
+
+CURRENT_PYTHON=$(which python)
+
+if [ "$PYTHON_CMD" != "$CURRENT_PYTHON" ]; then
+   alias ctpython="$PYTHON_CMD"
+fi
+
+if [ "default" = "y" ]; then
+    if [ -z $MATLABPATH ]; then
+        MATLABPATH=$INSTALL_DIRECTORY/lib/cantera/matlab/toolbox:$INSTALL_DIRECTORY/lib/cantera/matlab/toolbox/1D
+    else
+        MATLABPATH=$MATLABPATH:$INSTALL_DIRECTORY/lib/cantera/matlab/toolbox:$INSTALL_DIRECTORY/lib/cantera/matlab/toolbox/1D
+    fi
+    export MATLABPATH
+fi
+
+if [ "$INSTALL_DIRECTORY/lib/python3.9/site-packages" != "" ]; then
+    if [ -z $PYTHONPATH ]; then
+        PYTHONPATH=$INSTALL_DIRECTORY/lib/python3.9/site-packages
+    else
+        PYTHONPATH=$INSTALL_DIRECTORY/lib/python3.9/site-packages:$PYTHONPATH
+    fi
+fi
+
+export PYTHONPATH
+
+export WM_CANTERA_DIR="$INSTALL_DIRECTORY/include"
+
+export CANTERA_DATA="$INSTALL_DIRECTORY/share/cantera/data"
 
 #------------------------------------------------------------------------------

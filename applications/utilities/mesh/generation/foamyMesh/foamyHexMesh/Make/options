@@ -25,6 +25,8 @@ EXE_INC = \
     -IvectorTools
 
 EXE_LIBS = \
+    -L$(CANTERA_LIB_PATH) \
+    -lcantera_shared \
     ${CGAL_LIBS} \
     -lconformalVoronoiMesh \
     -lmeshTools \

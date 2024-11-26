@@ -30,6 +30,7 @@ License
 
 #include "StandardChemistryModel.H"
 #include "TDACChemistryModel.H"
+#include "canteraChemistryModel.H"
 
 #include "noChemistrySolver.H"
 #include "EulerImplicit.H"
@@ -67,8 +68,22 @@ License
     BasicChemistryModel<Comp>::                                                \
         add##thermo##ConstructorToTable<TDAC##SS##Comp##Thermo>                \
         add##TDAC##SS##Comp##Thermo##thermo##ConstructorTo##BasicChemistryModel\
-##Comp##Table_;
-
+##Comp##Table_;\
+                                                                               \
+    typedef SS<canteraChemistryModel<Comp, Thermo>> cantera##SS##Comp##Thermo; \
+                                                                               \
+    defineTemplateTypeNameAndDebugWithName                                     \
+    (                                                                          \
+        cantera##SS##Comp##Thermo,                                             \
+        (#SS"<" + word(canteraChemistryModel<Comp, Thermo>::typeName_()) + "<" \
+        + word(Comp::typeName_()) + "," + Thermo::typeName() + ">>").c_str(),  \
+        0                                                                      \
+    );                                                                         \
+                                                                               \
+    BasicChemistryModel<Comp>::                                                \
+        add##thermo##ConstructorToTable<cantera##SS##Comp##Thermo>             \
+        add##cantera##SS##Comp##Thermo##thermo##ConstructorTo                  \
+##BasicChemistryModel##Comp##Table_;
 
 #define makeChemistrySolverTypes(Comp, Thermo)                                 \
                                                                                \

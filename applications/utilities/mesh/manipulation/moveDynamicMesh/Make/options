@@ -7,6 +7,8 @@ EXE_INC = \
     -I../checkMesh
 
 EXE_LIBS = \
+    -L$(CANTERA_LIB_PATH) \
+    -lcantera_shared \
     -ldynamicFvMesh \
     -lmeshTools \
     -lsampling \

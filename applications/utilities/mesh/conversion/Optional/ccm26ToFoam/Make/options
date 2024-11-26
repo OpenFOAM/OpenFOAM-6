@@ -7,6 +7,8 @@ EXE_INC = \
     -I$(LIBCCMIO_DIR)/lnInclude
 
 EXE_LIBS = \
+    -L$(CANTERA_LIB_PATH) \
+    -lcantera_shared \
     -lfiniteVolume \
     -lmeshTools \
     -L$(FOAM_EXT_LIBBIN) -lccmio

@@ -19,6 +19,8 @@ EXE_INC = \
     -I../vectorTools
 
 EXE_LIBS = \
+    -L$(CANTERA_LIB_PATH) \
+    -lcantera_shared \
     $(CGAL_LIBS) \
     -lboost_thread \
     -lmpfr \

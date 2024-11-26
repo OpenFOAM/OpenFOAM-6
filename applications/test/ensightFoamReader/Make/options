@@ -2,4 +2,6 @@ EXE_INC = \
     -DUSERD_API_203
 
 EXE_LIBS = \
+    -L$(CANTERA_LIB_PATH) \
+    -lcantera_shared \
     -luserd-foam

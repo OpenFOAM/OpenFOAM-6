@@ -25,6 +25,8 @@ EXE_INC = \
 
 
 EXE_LIBS = \
+    -L$(CANTERA_LIB_PATH) \
+    -lcantera_shared \
     -lfiniteVolume \
     -lmeshTools \
     -lturbulenceModels \

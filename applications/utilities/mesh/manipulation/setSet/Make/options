@@ -3,5 +3,7 @@ EXE_INC = \
     $(COMP_FLAGS)
 
 EXE_LIBS = \
+    -L$(CANTERA_LIB_PATH) \
+    -lcantera_shared \
     -lmeshTools \
     $(LINK_FLAGS)

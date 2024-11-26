@@ -24,6 +24,8 @@ EXE_INC = \
     -I$(FOAM_SOLVERS)/combustion/reactingFoam
 
 EXE_LIBS = \
+    -L$(CANTERA_LIB_PATH) \
+    -lcantera_shared \
     -lfiniteVolume \
     -lfvOptions \
     -lsampling \

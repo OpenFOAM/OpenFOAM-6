@@ -1,6 +1,7 @@
 chemistryReaders/chemkinReader/chemkinReader.C
 chemistryReaders/chemkinReader/chemkinLexer.L
 chemistryReaders/chemistryReader/makeChemistryReaders.C
+chemistryReaders/canteraChemistryReader/canteraChemistryReader.C
 
 mixtures/basicMultiComponentMixture/basicMultiComponentMixture.C
 mixtures/basicSpecieMixture/basicSpecieMixture.C

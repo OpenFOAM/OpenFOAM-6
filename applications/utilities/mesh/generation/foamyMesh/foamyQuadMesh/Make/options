@@ -23,6 +23,8 @@ EXE_INC = \
     -I$(LIB_SRC)/mesh/snappyHexMesh/lnInclude
 
 EXE_LIBS = \
+    -L$(CANTERA_LIB_PATH) \
+    -lcantera_shared \
     $(CGAL_LIBS) \
     -lextrude2DMesh \
     -lextrudeModel \

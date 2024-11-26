@@ -8,6 +8,8 @@ EXE_INC = \
     -I$(LIB_SRC)/finiteVolume/lnInclude
 
 EXE_LIBS = \
+    -L$(CANTERA_LIB_PATH) \
+    -lcantera_shared \
     -lmeshTools \
     -ldynamicMesh \
     -lfiniteVolume \

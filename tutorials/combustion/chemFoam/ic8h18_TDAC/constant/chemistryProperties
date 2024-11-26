@@ -27,7 +27,7 @@ initialChemicalTimeStep 1e-7;
 
 odeCoeffs
 {
-    solver          seulex;
+    solver          CVODES;
     absTol          1e-12;
     relTol          1e-1;
 }

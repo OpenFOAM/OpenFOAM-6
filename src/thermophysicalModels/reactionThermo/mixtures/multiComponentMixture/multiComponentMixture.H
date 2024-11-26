@@ -37,6 +37,10 @@ SourceFiles
 
 #include "basicSpecieMixture.H"
 #include "HashPtrTable.H"
+#include "cantera/IdealGasMix.h"
+#include "cantera/transport.h"
+#include "cantera/transport/MultiTransport.h"
+#include "cantera/transport/MixTransport.h"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -53,7 +57,13 @@ class multiComponentMixture
     public basicSpecieMixture
 {
     // Private data
-
+    
+        //- cantera object
+        Cantera::IdealGasMix gas_;
+        Cantera::Transport* tran_;
+        Cantera::MixTransport* tranMix_;
+        Cantera::MultiTransport* tranMulti_;
+        
         //- Species data
         PtrList<ThermoType> speciesData_;
 
@@ -75,9 +85,23 @@ class multiComponentMixture
         void correctMassFractions();
 
         //- Construct as copy (not implemented)
-        multiComponentMixture(const multiComponentMixture<ThermoType>&);
+        multiComponentMixture(const multiComponentMixture<ThermoType>&);      
+    
+protected:
+        //- if mixtureAveraged transport model used
+        bool MmixtureAveraged_ = false;
 
+        //- if multiComponent transport model used        
+        bool MmultiComponent_ = false;
 
+        //- if mixtureAveraged transport model used
+        bool MconstantLewis_ = false;
+
+        //- if multiComponent transport model used        
+        bool MunityLewis_ = false;
+        
+        //- Lewis number
+        scalarField LewisNumber_;
 public:
 
     //- The type of thermodynamics this mixture is instantiated for
@@ -94,7 +118,8 @@ public:
             const wordList& specieNames,
             const HashPtrTable<ThermoType>& thermoData,
             const fvMesh&,
-            const word&
+            const word&,
+            Cantera::IdealGasMix&
         );
 
         //- Construct from dictionary, mesh and phase name
@@ -136,11 +161,46 @@ public:
             const label patchi,
             const label facei
         ) const;
+        
+        scalar muCellMixture
+        (
+            const scalar p,
+            const scalar T,
+            const label celli
+        );
+
+        scalar alphahCellMixture
+        (
+            const scalar p,
+            const scalar T,
+            const label celli
+        );
+
+        scalar muPatchFaceMixture
+        (
+            const scalar p,
+            const scalar T,
+            const label patchi,
+            const label facei            
+        );
+
+        scalar alphahPatchFaceMixture
+        (
+            const scalar p,
+            const scalar T,
+            const label patchi,
+            const label facei
+        );        
 
         //- Return the raw specie thermodynamic data
         const PtrList<ThermoType>& speciesData() const
         {
             return speciesData_;
+        }
+        
+        Cantera::IdealGasMix canteraGas()
+        {
+            return gas_;
         }
 
         //- Read dictionary

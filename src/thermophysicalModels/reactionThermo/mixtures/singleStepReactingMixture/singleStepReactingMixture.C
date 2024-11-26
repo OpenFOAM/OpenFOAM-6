@@ -237,7 +237,7 @@ Foam::singleStepReactingMixture<ThermoType>::singleStepReactingMixture
 
         calculateMaxProducts();
 
-        autoPtr<chemistryReader<ThermoType>>::clear();
+        // autoPtr<chemistryReader<ThermoType>>::clear();
     }
     else
     {

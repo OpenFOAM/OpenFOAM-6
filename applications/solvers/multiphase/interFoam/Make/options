@@ -13,6 +13,8 @@ EXE_INC = \
     -I$(LIB_SRC)/sampling/lnInclude
 
 EXE_LIBS = \
+    -L$(CANTERA_LIB_PATH) \
+    -lcantera_shared \
     -limmiscibleIncompressibleTwoPhaseMixture \
     -lturbulenceModels \
     -lincompressibleTurbulenceModels \

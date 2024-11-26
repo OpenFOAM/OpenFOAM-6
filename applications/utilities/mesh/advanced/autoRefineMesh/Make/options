@@ -5,6 +5,8 @@ EXE_INC = \
     -I$(LIB_SRC)/lagrangian/basic/lnInclude
 
 EXE_LIBS = \
+    -L$(CANTERA_LIB_PATH) \
+    -lcantera_shared \
     -ldynamicMesh \
     -lmeshTools \
     -ltriSurface \

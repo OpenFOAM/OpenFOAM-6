@@ -25,6 +25,7 @@ License
 
 #include "makeReactionThermo.H"
 
+#include "canteraPsiThermo.H"
 #include "psiReactionThermo.H"
 #include "hePsiThermo.H"
 
@@ -97,6 +98,19 @@ makeReactionThermos
 
 
 // sutherlandTransport, hConstThermo
+
+makeReactionThermos
+(
+    psiThermo,
+    psiReactionThermo,
+    canteraPsiThermo,
+    reactingMixture,
+    sutherlandTransport,
+    sensibleEnthalpy,
+    janafThermo,
+    perfectGas,
+    specie
+);
 
 makeReactionThermos
 (
@@ -180,6 +194,15 @@ makeReactionThermos
 );
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+/*makeThermoPhysicsReactionThermos
+(
+    psiThermo,
+    psiReactionThermo,
+    canteraPsiThermo,
+    reactingMixture,
+    gasHThermoPhysics
+);*/
 
 // Multi-component thermo for sensible enthalpy
 

@@ -1,5 +1,14 @@
 EXE_INC = \
-    -I$(LIB_SRC)/finiteVolume/lnInclude
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(WM_CANTERA_DIR) \
+    -I$(WM_CANTERA_DIR)/cantera \
+    -I$(WM_CANTERA_DIR)/cantera/kinetics \
+    -I$(WM_CANTERA_DIR)/cantera/base \
+    -I$(WM_CANTERA_DIR)/cantera/transport \
+    -I$(WM_CANTERA_DIR)/cantera/thermo \
+    -I$(WM_CANTERA_DIR)/cantera/ext \
+    -I$(WM_CANTERA_DIR)/cantera/ext/fmt
+
 
 LIB_LIBS = \
     -lfiniteVolume

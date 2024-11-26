@@ -17,5 +17,7 @@ ODESolvers/SIBS/SIBS.C
 ODESolvers/SIBS/SIMPR.C
 ODESolvers/SIBS/polyExtrapolate.C
 ODESolvers/seulex/seulex.C
+CVODES/CVODES.C
+CVODES/extFunc.C
 
 LIB = $(FOAM_LIBBIN)/libODE

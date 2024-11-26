@@ -5,4 +5,6 @@ EXE_INC = \
     /* -DDEBUG_ORDER */
 
 EXE_LIBS = \
+    -L$(CANTERA_LIB_PATH) \
+    -lcantera_shared \
     -lmeshTools

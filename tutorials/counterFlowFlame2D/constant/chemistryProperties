@@ -1,0 +1,35 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version         2;
+    format          ascii;
+    class           dictionary;
+    location        "constant";
+    object          chemistryProperties;
+}
+
+chemistryType
+{
+    solver          ode;
+	method          cantera;
+}
+
+chemistry       on;
+
+initialChemicalTimeStep 1e-07;
+
+odeCoeffs
+{
+    solver          CVODES;
+    absTol          1e-10;
+    relTol          1e-3;
+}
+
+
+// ************************************************************************* //
